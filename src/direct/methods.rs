@@ -688,7 +688,7 @@ impl NcDirect {
         let (ul, ur, ll, lr) = (ul.into(), ur.into(), ll.into(), lr.into());
         error![
             unsafe {
-                let wchars = wchars as *const [char; 6] as *const i32;
+                let wchars = wchars as *const [char; 6] as *const u32;
                 c_api::ncdirect_box(self, ul.0, ur.0, ll.0, lr.0, wchars, len_y, len_x, ctlword)
             },
             &format!(
