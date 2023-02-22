@@ -307,7 +307,7 @@ pub fn ncplane_putchar_stained(plane: &mut NcPlane, ch: char) -> NcResult_i32 {
 pub fn ncplane_putegc(plane: &mut NcPlane, egc: &str, sbytes: Option<&mut usize>) -> NcResult_i32 {
     let sbytes_ptr = if let Some(sb) = sbytes { sb as *mut _ } else { null_mut() };
     let cs = cstring![egc];
-    let egc_ptr = cs.as_ptr() as *const i8; // CHECK why is this needed only here
+    let egc_ptr = cs.as_ptr() as *const u8; // CHECK why is this needed only here
 
     unsafe { c_api::ffi::ncplane_putegc_yx(plane, -1, -1, egc_ptr, sbytes_ptr) }
 }
